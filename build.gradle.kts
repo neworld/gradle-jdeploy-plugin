@@ -4,6 +4,7 @@ plugins {
     `java-gradle-plugin`
     `maven-publish`
     `kotlin-dsl`
+    id("com.gradle.plugin-publish") version "0.9.9"
 }
 
 group = "lt.neworld.gradle"
@@ -28,6 +29,20 @@ gradlePlugin {
         "jdeploy" {
             id = "lt.neworld.jdeploy"
             implementationClass = "lt.neworld.gradle.jdeploy.JDeployPlugin"
+        }
+    }
+}
+
+pluginBundle {
+    website = "https://github.com/neworld/gradle-jdeploy-plugin"
+    vcsUrl = "https://github.com/neworld/gradle-jdeploy-plugin"
+    description = "Plugin for publishing JVM software through NPM."
+    tags = listOf("jdeploy", "publishing", "npm")
+
+    (plugins) {
+        "jdeploy" {
+            id = "lt.neworld.jdeploy"
+            displayName = "jDeploy plugin"
         }
     }
 }
