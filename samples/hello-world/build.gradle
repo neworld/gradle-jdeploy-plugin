@@ -1,0 +1,21 @@
+apply plugin: 'kotlin'
+apply plugin: 'lt.neworld.jdeploy'
+
+version = "1.0.0"
+
+jar {
+    manifest {
+        attributes 'Main-Class': 'lt.neworld.sample.HelloWorld'
+    }
+    from {
+        configurations.compile.collect { it.isDirectory() ? it : zipTree(it) }
+    }
+}
+
+jdeploy {
+    name = "hello-world"
+}
+
+dependencies {
+    compile "org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlin_version"
+}
