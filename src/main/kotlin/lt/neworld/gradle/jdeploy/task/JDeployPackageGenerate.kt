@@ -1,37 +1,33 @@
-package lt.neworld.gradle.jdeploy
+package lt.neworld.gradle.jdeploy.task
 
 import com.moowork.gradle.node.NodeExtension
 import com.squareup.moshi.KotlinJsonAdapterFactory
 import com.squareup.moshi.Moshi
+import lt.neworld.gradle.jdeploy.JDeployExtension
 import lt.neworld.gradle.jdeploy.entity.JDeployEntity
 import lt.neworld.gradle.jdeploy.entity.PackageEntity
+import lt.neworld.gradle.jdeploy.jdeployExtension
 import okio.Okio
-import org.gradle.api.Project
-import java.io.File
+import org.gradle.api.DefaultTask
+import org.gradle.api.tasks.Nested
+import org.gradle.api.tasks.TaskAction
 
 /**
  * @author Andrius Semionovas
- * @since 2017-11-26
+ * @since 2017-11-27
  */
-class PackageFileGenerator(private val project: Project, private val config: JDeployExtension) {
+open class JDeployPackageGenerate : DefaultTask() {
+    @get:Nested
+    val config: JDeployExtension
+        get() = project.jdeployExtension
+
     private val serializer by lazy {
         Moshi.Builder()
                 .add(KotlinJsonAdapterFactory())
                 .build()
     }
 
-    fun getArchivePath(): File {
-        if (config.jar != null) return config.jar!!
-
-        val jarTask = project.tasks.findByName("jar") as org.gradle.api.tasks.bundling.Jar?
-
-        if (jarTask == null) {
-            throw IllegalArgumentException("Could not find jar-task. Please make sure you are applying the 'java' plugin or using explicit:\n jdeploy { \n jar = <file> \n }")
-        }
-
-        return jarTask.archivePath
-    }
-
+    @TaskAction
     fun generate() {
         val name = config.name ?: throw IllegalArgumentException("You must specify the name: \n jdeploy { \n\t name : <app name> \n }")
 
@@ -61,7 +57,7 @@ class PackageFileGenerator(private val project: Project, private val config: JDe
                 preferGlobal = true,
                 repository = config.repository,
                 version = project.version as String,
-                jdeploy = JDeployEntity(getArchivePath().absolutePath),
+                jdeploy = JDeployEntity(config.realJar.absolutePath),
                 license = config.license,
                 name = name,
                 files = listOf("jdeploy-bundle")
@@ -72,5 +68,9 @@ class PackageFileGenerator(private val project: Project, private val config: JDe
         Okio.buffer(Okio.sink(toolOptions.packageFile)).use {
             serializer.adapter(PackageEntity::class.java).toJson(it, packageEntity)
         }
+    }
+
+    companion object {
+        const val NAME = "jdeployPackageGenerate"
     }
 }

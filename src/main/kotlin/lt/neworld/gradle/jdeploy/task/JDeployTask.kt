@@ -4,15 +4,25 @@ import lt.neworld.gradle.jdeploy.jdeployExtension
 import lt.neworld.gradle.jdeploy.runner.JDeployRunner
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.Input
+import org.gradle.api.tasks.InputFile
 import org.gradle.api.tasks.TaskAction
+import java.io.File
 
 /**
  * @author Andrius Semionovas
  * @since 2017-11-26
  */
 open class JDeployTask : DefaultTask() {
-    @Input
+    init {
+        dependsOn(JDeployPrepare2.NAME, "jar", JDeployPackageGenerate.NAME)
+    }
+
+    @get:Input
     var command: String? = null
+
+    @get:InputFile
+    val jar: File
+        get() = project.jdeployExtension.realJar
 
     @TaskAction
     fun exec() {

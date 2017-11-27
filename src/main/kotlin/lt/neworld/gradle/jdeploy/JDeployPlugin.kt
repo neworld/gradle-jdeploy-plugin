@@ -1,7 +1,8 @@
 package lt.neworld.gradle.jdeploy
 
 import com.moowork.gradle.node.NodeExtension
-import com.moowork.gradle.node.npm.NpmTask
+import lt.neworld.gradle.jdeploy.task.JDeployPackageGenerate
+import lt.neworld.gradle.jdeploy.task.JDeployPrepare
 import lt.neworld.gradle.jdeploy.task.JDeployTask
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -25,22 +26,17 @@ class JDeployPlugin : Plugin<Project> {
         val jdeployExtension = JDeployExtension(project)
         project.extensions.add("jdeploy", jdeployExtension)
 
-        val prepareTask = project.tasks.create("jdeployPrepare", NpmTask::class.java) {
-            group = TASK_GROUP
-            description = "Prepare jdeploy and configuration"
+        project.tasks.create(JDeployPrepare.NAME, JDeployPrepare::class.java)
 
-            setArgs(listOf("install", "jdeploy"))
-            doLast {
-                PackageFileGenerator(project, jdeployExtension).generate()
-            }
+        project.tasks.create(JDeployPackageGenerate.NAME, JDeployPackageGenerate::class.java) {
+            group = JDeployPlugin.TASK_GROUP
+            description = "Prepare package configuration"
         }
 
         project.tasks.create("jdeployInstall", JDeployTask::class.java) {
             group = TASK_GROUP
             description = "Install package locally"
 
-            dependsOn(prepareTask)
-            dependsOn("jar")
             command = "install"
         }
 
@@ -48,13 +44,12 @@ class JDeployPlugin : Plugin<Project> {
             group = TASK_GROUP
             description = "Publish package to NPM"
 
-            dependsOn(prepareTask)
-            dependsOn("jar")
             command = "publish"
         }
     }
 
     companion object {
-        private const val TASK_GROUP = "jdeploy"
+        const val TASK_GROUP = "jdeploy"
+        const val JDEPLOY_VERSION = "1.0.21"
     }
 }
