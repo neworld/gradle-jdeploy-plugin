@@ -14,14 +14,19 @@ class JDeployExtension(project: Project) {
     var name: String? = null
     var repository: String = ""
     var jar: File? = null
-    var allowGlobalInstall: Boolean = false
 
-    val workDir: File
-    val packageFile: File
+    val options: ToolOptions
+
+    fun options(configuration: ToolOptions.() -> Unit) {
+        options.configuration()
+    }
 
     init {
-        workDir = File(project.buildDir, "jdeploy")
-        packageFile = File(workDir, "package.json")
+        val workDir = File(project.buildDir, "jdeploy")
+        options = ToolOptions(
+                workDir = workDir,
+                packageFile = File(workDir, "package.json")
+        )
     }
 }
 

@@ -35,7 +35,9 @@ class PackageFileGenerator(private val project: Project, private val config: JDe
     fun generate() {
         val name = config.name ?: throw IllegalArgumentException("You must specify the name: \n jdeploy { \n\t name : <app name> \n }")
 
-        if (NodeExtension.get(project).download && config.allowGlobalInstall) {
+        val toolOptions = config.options
+
+        if (NodeExtension.get(project).download && toolOptions.allowGlobalInstall) {
             throw IllegalArgumentException("""You are using global npm.
                 You have to explicit let plugin install jdeploy globally:
 
@@ -65,9 +67,9 @@ class PackageFileGenerator(private val project: Project, private val config: JDe
                 files = listOf("jdeploy-bundle")
         )
 
-        config.packageFile.parentFile.mkdirs()
+        toolOptions.packageFile.parentFile.mkdirs()
 
-        Okio.buffer(Okio.sink(config.packageFile)).use {
+        Okio.buffer(Okio.sink(toolOptions.packageFile)).use {
             serializer.adapter(PackageEntity::class.java).toJson(it, packageEntity)
         }
     }

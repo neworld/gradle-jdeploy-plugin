@@ -19,7 +19,7 @@ open class JDeployTask : DefaultTask() {
         val command = command ?: throw IllegalArgumentException("Make sure command is set")
 
         JDeployRunner(project, command).apply {
-            workingDir = project.jdeployExtension.workDir
+            workingDir = project.jdeployExtension.options.workDir
         }.execute()
     }
 }
