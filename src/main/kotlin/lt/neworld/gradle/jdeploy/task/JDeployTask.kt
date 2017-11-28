@@ -14,7 +14,7 @@ import java.io.File
  */
 open class JDeployTask : DefaultTask() {
     init {
-        dependsOn(JDeployPrepare2.NAME, "jar", JDeployPackageGenerate.NAME)
+        dependsOn(JDeploySetup.NAME, "jar", JDeployPackageGenerate.NAME)
     }
 
     @get:Input
