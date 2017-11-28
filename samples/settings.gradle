@@ -1,3 +1,4 @@
 rootProject.name = 'samples'
 
 include ':hello-world'
+include ':custom-jdeploy-version'

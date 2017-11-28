@@ -19,3 +19,10 @@ allprojects {
         mavenCentral()
     }
 }
+
+def smokeTests = [
+        'custom-jdeploy-version:jdeployInstall',
+        'hello-world:jdeployInstall'
+]
+
+task smokeTest(dependsOn: smokeTests)
