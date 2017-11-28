@@ -1,7 +1,9 @@
 package lt.neworld.gradle.jdeploy
 
+import groovy.lang.Closure
 import org.gradle.api.Project
 import org.gradle.api.tasks.Input
+import org.gradle.kotlin.dsl.invoke
 import java.io.File
 
 /**
@@ -22,8 +24,9 @@ class JDeployExtension(private val project: Project) {
 
     val options: ToolOptions
 
-    fun options(configuration: ToolOptions.() -> Unit) {
-        options.configuration()
+    fun options(configuration: Closure<ToolOptions>) {
+        configuration.delegate = options
+        configuration()
     }
 
     init {

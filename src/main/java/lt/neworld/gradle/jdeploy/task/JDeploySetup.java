@@ -13,12 +13,14 @@ import java.util.Arrays;
 public class JDeploySetup extends NpmTask {
     public final static String NAME = "jdeploySetup";
 
-    public JDeploySetup() {
-        setArgs(Arrays.asList("install", "jdeploy@" + version()));
-    }
-
     @Input
     public String version() {
-        return JDeployExtensionKt.getJdeployExtension(getProject()).getOptions().getVersion();
+        return JDeployExtensionKt.getJdeployExtension(getProject()).getOptions().getToolVersion();
+    }
+
+    @Override
+    public void exec() {
+        setArgs(Arrays.asList("install", "jdeploy@" + version()));
+        super.exec();
     }
 }
