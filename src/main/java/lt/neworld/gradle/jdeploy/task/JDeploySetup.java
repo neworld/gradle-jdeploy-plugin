@@ -10,10 +10,10 @@ import java.util.Arrays;
  * @author Andrius Semionovas
  * @since 2017-11-27
  */
-public class JDeployPrepare extends NpmTask {
-    public final static String NAME = "jdeployPrepare";
+public class JDeploySetup extends NpmTask {
+    public final static String NAME = "jdeploySetup";
 
-    public JDeployPrepare() {
+    public JDeploySetup() {
         setArgs(Arrays.asList("install", "jdeploy@" + version()));
     }
 

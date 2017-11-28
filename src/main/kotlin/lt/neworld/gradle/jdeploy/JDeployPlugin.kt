@@ -2,7 +2,7 @@ package lt.neworld.gradle.jdeploy
 
 import com.moowork.gradle.node.NodeExtension
 import lt.neworld.gradle.jdeploy.task.JDeployPackageGenerate
-import lt.neworld.gradle.jdeploy.task.JDeployPrepare
+import lt.neworld.gradle.jdeploy.task.JDeploySetup
 import lt.neworld.gradle.jdeploy.task.JDeployTask
 import org.gradle.api.Plugin
 import org.gradle.api.Project
@@ -26,7 +26,7 @@ class JDeployPlugin : Plugin<Project> {
         val jdeployExtension = JDeployExtension(project)
         project.extensions.add("jdeploy", jdeployExtension)
 
-        project.tasks.create(JDeployPrepare.NAME, JDeployPrepare::class.java)
+        project.tasks.create(JDeploySetup.NAME, JDeploySetup::class.java)
 
         project.tasks.create(JDeployPackageGenerate.NAME, JDeployPackageGenerate::class.java) {
             group = JDeployPlugin.TASK_GROUP
