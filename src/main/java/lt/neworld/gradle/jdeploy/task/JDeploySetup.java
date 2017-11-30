@@ -16,21 +16,9 @@ import java.util.Arrays;
 public class JDeploySetup extends NpmTask {
     public final static String NAME = "jdeploySetup";
 
-    private String version;
-
-    public JDeploySetup() {
-        getProject().afterEvaluate((project) ->
-                setVersion(JDeployExtensionKt.getJdeployExtension(project).getOptions().getToolVersion())
-        );
-    }
-
     @Input
     public String getVersion() {
-        return version;
-    }
-
-    public void setVersion(String version) {
-        this.version = version;
+        return JDeployExtensionKt.getJdeployExtension(getProject()).getOptions().getToolVersion();
     }
 
     @OutputDirectory
