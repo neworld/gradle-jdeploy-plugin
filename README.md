@@ -12,7 +12,7 @@ buildscript {
     }
 
     dependencies {
-        classpath "lt.neworld.gradle:gradle-jdeploy-plugin:0.1.0"
+        classpath "lt.neworld.gradle:gradle-jdeploy-plugin:0.2.0"
     }
 }
 
@@ -24,8 +24,25 @@ apply plugin: 'lt.neworld.jdeploy'
 ```groovy
 jdeploy {
     name = "hello-world"
+    author = "neworldLT"
+    description = "Hello world app for testing purposes"
+    license = "MIT"
+    repository = "https://github.com/neworld/gradle-jdeploy-plugin"
+    
+    options {
+        toolVersion = "1.0.21" // optional
+        allowGlobalInstall = false // optional; explicit enable global install of jdeploy
+    }
 }
 ```
+
+### Compatibility with [gradle-node-plugin](https://github.com/srs/gradle-node-plugin)
+
+Actually, this plugin depends on [gradle-node-plugin](https://github.com/srs/gradle-node-plugin).
+I do my best to make sure this plugin plays nicely.
+If you are using that node plugin, and you are disabled `download` (which is default behavior), then `jdeploy` needs to be install globally.
+However, this could cause undesired outcome.
+You should consider use node in the project scope or explicit allow install globally using `allowGlobalInstall` flag.
 
 ### Run
 ```
