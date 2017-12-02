@@ -22,7 +22,8 @@ allprojects {
 
 def smokeTests = [
         'custom-jdeploy-version:jdeployInstall',
-        'hello-world:jdeployInstall'
+        'hello-world:jdeployInstall',
+        'jdeploy-using-global-node:jdeployInstall',
 ]
 
 task smokeTest(dependsOn: smokeTests)

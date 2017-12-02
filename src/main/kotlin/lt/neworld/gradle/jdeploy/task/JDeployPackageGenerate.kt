@@ -38,22 +38,6 @@ open class JDeployPackageGenerate : DefaultTask() {
 
         val toolOptions = config.options
 
-        if (NodeExtension.get(project).download && toolOptions.allowGlobalInstall) {
-            throw IllegalArgumentException("""You are using global npm.
-                You have to explicit let plugin install jdeploy globally:
-
-                jdeploy {
-                    allowGlobalInstall = false
-                }
-
-                or enable local copy of npm:
-
-                node {
-                    download = true
-                }
-            """);
-        }
-
         val packageEntity = PackageEntity(
                 bin = mapOf(name to "jdeploy-bundle/jdeploy.js"),
                 author = config.author,

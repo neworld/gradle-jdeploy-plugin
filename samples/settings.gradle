@@ -2,3 +2,4 @@ rootProject.name = 'samples'
 
 include ':hello-world'
 include ':custom-jdeploy-version'
+include ':jdeploy-using-global-node'
