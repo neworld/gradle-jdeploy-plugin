@@ -10,7 +10,9 @@ import lt.neworld.gradle.jdeploy.jdeployExtension
 import okio.Okio
 import org.gradle.api.DefaultTask
 import org.gradle.api.tasks.Nested
+import org.gradle.api.tasks.OutputFile
 import org.gradle.api.tasks.TaskAction
+import java.io.File
 
 /**
  * @author Andrius Semionovas
@@ -26,6 +28,9 @@ open class JDeployPackageGenerate : DefaultTask() {
                 .add(KotlinJsonAdapterFactory())
                 .build()
     }
+
+    @OutputFile
+    val output: File = config.options.packageFile
 
     @TaskAction
     fun generate() {
