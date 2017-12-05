@@ -24,6 +24,18 @@ dependencies {
     testCompile("junit:junit:4.12")
 }
 
+val sourcesJar by tasks.creating(Jar::class) {
+    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    classifier = "sources"
+    from(java.sourceSets["main"].allSource)
+}
+
+val archives = configurations.getByName("archives")
+
+artifacts.add(archives.name, sourcesJar) {
+    builtBy(sourcesJar)
+}
+
 gradlePlugin {
     (plugins) {
         "jdeploy" {
