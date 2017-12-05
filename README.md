@@ -3,21 +3,30 @@ It helps publish software written in java, kotlin and other JVM languages throug
 
 ### Setup
  
-```
+```groovy
 buildscript {
-    repositories {
-        maven {
-            url "https://plugins.gradle.org/m2/"
-        }
+  repositories {
+    maven {
+      url "https://plugins.gradle.org/m2/"
     }
-
-    dependencies {
-        classpath "lt.neworld.gradle:gradle-jdeploy-plugin:0.2.0"
-    }
+  }
+  dependencies {
+    classpath "gradle.plugin.lt.neworld.gradle:gradle-jdeploy-plugin:0.2.0"
+  }
 }
 
-apply plugin: 'lt.neworld.jdeploy'
+apply plugin: "lt.neworld.jdeploy"
 ```
+
+or
+
+```groovy
+plugins {
+  id "lt.neworld.jdeploy" version "0.2.0"
+}
+```
+
+if you are using [gradle-node-plugin](https://github.com/srs/gradle-node-plugin), you must apply this plugin after it.
 
 ### Config
 
