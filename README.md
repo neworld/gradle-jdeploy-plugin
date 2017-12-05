@@ -11,7 +11,7 @@ buildscript {
     }
   }
   dependencies {
-    classpath "gradle.plugin.lt.neworld.gradle:gradle-jdeploy-plugin:0.2.0"
+    classpath "gradle.plugin.lt.neworld.gradle:gradle-jdeploy-plugin:0.2.1"
   }
 }
 
@@ -22,7 +22,7 @@ or
 
 ```groovy
 plugins {
-  id "lt.neworld.jdeploy" version "0.2.0"
+  id "lt.neworld.jdeploy" version "0.2.1"
 }
 ```
 
