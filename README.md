@@ -1,3 +1,6 @@
+[![GitHub (pre-)release](https://img.shields.io/github/release/neworld/gradle-jdeploy-plugin/all.svg)](https://github.com/neworld/gradle-jdeploy-plugin)
+
+
 This Gradle plugin is a wrapper for [jDeploy](https://github.com/shannah/jdeploy). 
 It helps publish software written in java, kotlin and other JVM languages through [NPM](https://www.npmjs.com/)
 
@@ -11,7 +14,7 @@ buildscript {
     }
   }
   dependencies {
-    classpath "gradle.plugin.lt.neworld.gradle:gradle-jdeploy-plugin:0.2.1"
+    classpath "gradle.plugin.lt.neworld.gradle:gradle-jdeploy-plugin:0.3.0"
   }
 }
 
@@ -22,7 +25,7 @@ or
 
 ```groovy
 plugins {
-  id "lt.neworld.jdeploy" version "0.2.1"
+  id "lt.neworld.jdeploy" version "0.3.0"
 }
 ```
 

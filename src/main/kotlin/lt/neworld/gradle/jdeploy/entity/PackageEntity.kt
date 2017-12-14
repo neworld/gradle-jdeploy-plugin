@@ -15,5 +15,6 @@ data class PackageEntity(
         val author: String,
         val description: String,
         val repository: String,
-        val main: String
+        val main: String,
+        val dependencies: Map<String, String>
 )

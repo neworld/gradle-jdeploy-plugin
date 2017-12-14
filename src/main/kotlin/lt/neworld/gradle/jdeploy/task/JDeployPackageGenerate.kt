@@ -49,7 +49,8 @@ open class JDeployPackageGenerate : DefaultTask() {
                 jdeploy = JDeployEntity(config.realJar.absolutePath),
                 license = config.license,
                 name = name,
-                files = listOf("jdeploy-bundle")
+                files = listOf("jdeploy-bundle"),
+                dependencies = mapOf("shelljs" to "^0.7.5")
         )
 
         toolOptions.packageFile.parentFile.mkdirs()

@@ -1,3 +1,7 @@
+### v0.3.0
+
+- Add missing shelljs dependency
+
 ### v0.2.1
 
 - Add sources
