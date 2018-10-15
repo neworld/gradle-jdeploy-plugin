@@ -33,7 +33,8 @@ open class JDeployPackageGenerate : DefaultTask() {
 
     @TaskAction
     fun generate() {
-        val name = config.name ?: throw IllegalArgumentException("You must specify the name: \n jdeploy { \n\t name : <app name> \n }")
+        val name = config.name
+                ?: throw IllegalArgumentException("You must specify the name: \n jdeploy { \n\t name : <app name> \n }")
 
         val toolOptions = config.options
 
@@ -49,7 +50,7 @@ open class JDeployPackageGenerate : DefaultTask() {
                 license = config.license,
                 name = name,
                 files = listOf("jdeploy-bundle"),
-                dependencies = mapOf("shelljs" to "^0.7.5")
+                dependencies = mapOf("shelljs" to "^0.8.2")
         )
 
         toolOptions.packageFile.parentFile.mkdirs()
