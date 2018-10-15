@@ -6,6 +6,7 @@ import lt.neworld.gradle.jdeploy.task.JDeploySetup
 import lt.neworld.gradle.jdeploy.task.JDeployTask
 import org.gradle.api.Plugin
 import org.gradle.api.Project
+import org.gradle.api.tasks.Copy
 import java.io.File
 
 /**
@@ -33,6 +34,14 @@ class JDeployPlugin : Plugin<Project> {
             description = "Prepare package configuration"
         }
 
+        project.tasks.create("jdeployReadme", Copy::class.java) {
+            from(project.projectDir)
+            into(project.jdeployExtension.options.workDir)
+            include("readme.md")
+
+            isCaseSensitive = false
+        }
+
         project.tasks.create("jdeployInstall", JDeployTask::class.java) {
             group = TASK_GROUP
             description = "Install package locally"
@@ -49,6 +58,7 @@ class JDeployPlugin : Plugin<Project> {
     }
 
     companion object {
+        const val JDEPLOY_COPY_README_TASK = "jdeployReadme"
         const val TASK_GROUP = "jdeploy"
         const val JDEPLOY_VERSION = "1.0.21"
     }

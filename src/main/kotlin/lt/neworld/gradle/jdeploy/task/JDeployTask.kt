@@ -1,5 +1,6 @@
 package lt.neworld.gradle.jdeploy.task
 
+import lt.neworld.gradle.jdeploy.JDeployPlugin
 import lt.neworld.gradle.jdeploy.jdeployExtension
 import lt.neworld.gradle.jdeploy.runner.JDeployRunner
 import org.gradle.api.DefaultTask
@@ -14,7 +15,12 @@ import java.io.File
  */
 open class JDeployTask : DefaultTask() {
     init {
-        dependsOn(JDeploySetup.NAME, "jar", JDeployPackageGenerate.NAME)
+        dependsOn(
+                JDeploySetup.NAME,
+                "jar",
+                JDeployPackageGenerate.NAME,
+                JDeployPlugin.JDEPLOY_COPY_README_TASK
+        )
     }
 
     @get:Input

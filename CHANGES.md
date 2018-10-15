@@ -3,6 +3,7 @@
 - Update dependencies
 - Better Gradle incremental support
 - Global mode install jDeploy localy, into build directory
+- Include readme into package ((#2)[https://github.com/neworld/gradle-jdeploy-plugin/issues/2])
 
 ### v0.3.0
 
