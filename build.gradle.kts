@@ -1,14 +1,14 @@
-val kotlinVersion = "1.1.61"
+val kotlinVersion = "1.2.71"
 
 plugins {
     `java-gradle-plugin`
     `maven-publish`
     `kotlin-dsl`
-    id("com.gradle.plugin-publish") version "0.9.9"
+    id("com.gradle.plugin-publish") version "0.10.0"
 }
 
 group = "lt.neworld.gradle"
-version = "0.3.0"
+version = "0.4.0-SNAPSHOT"
 
 repositories {
     maven {
@@ -19,15 +19,15 @@ repositories {
 dependencies {
     compile("com.moowork.gradle:gradle-node-plugin:1.2.0")
     compile("org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlinVersion")
-    compile("com.squareup.moshi:moshi:1.5.0")
-    compile("com.squareup.moshi:moshi-kotlin:1.5.0")
+    compile("com.squareup.moshi:moshi:1.7.0")
+    compile("com.squareup.moshi:moshi-kotlin:1.7.0")
     testCompile("junit:junit:4.12")
 }
 
 val sourcesJar by tasks.creating(Jar::class) {
-    duplicatesStrategy = DuplicatesStrategy.EXCLUDE
+    setDuplicatesStrategy(DuplicatesStrategy.EXCLUDE)
     classifier = "sources"
-    from(java.sourceSets["main"].allSource)
+    from(sourceSets["main"].allSource)
 }
 
 val archives = configurations.getByName("archives")
@@ -37,8 +37,8 @@ artifacts.add(archives.name, sourcesJar) {
 }
 
 gradlePlugin {
-    (plugins) {
-        "jdeploy" {
+    plugins {
+        register("jdeploy") {
             id = "lt.neworld.jdeploy"
             implementationClass = "lt.neworld.gradle.jdeploy.JDeployPlugin"
         }

@@ -3,6 +3,8 @@ package lt.neworld.gradle.jdeploy
 import groovy.lang.Closure
 import org.gradle.api.Project
 import org.gradle.api.tasks.Input
+import org.gradle.api.tasks.InputFile
+import org.gradle.api.tasks.Nested
 import org.gradle.kotlin.dsl.invoke
 import java.io.File
 
@@ -11,17 +13,23 @@ import java.io.File
  * @since 2017-11-26
  */
 class JDeployExtension(private val project: Project) {
-    @get:Input var author: String = ""
-    @get:Input var description: String = ""
-    @get:Input var license: String = ""
-    @get:Input var name: String? = null
-    @get:Input var repository: String = ""
+    @get:Input
+    var author: String = ""
+    @get:Input
+    var description: String = ""
+    @get:Input
+    var license: String = ""
+    @get:Input
+    var name: String? = null
+    @get:Input
+    var repository: String = ""
     var jar: File? = null
 
-    @get:Input
+    @get:InputFile
     val realJar: File
         get() = jar ?: getArchivePath()
 
+    @get:Nested
     val options: ToolOptions
 
     fun options(configuration: Closure<ToolOptions>) {

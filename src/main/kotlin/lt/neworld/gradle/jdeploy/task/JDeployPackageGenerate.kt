@@ -1,6 +1,5 @@
 package lt.neworld.gradle.jdeploy.task
 
-import com.moowork.gradle.node.NodeExtension
 import com.squareup.moshi.KotlinJsonAdapterFactory
 import com.squareup.moshi.Moshi
 import lt.neworld.gradle.jdeploy.JDeployExtension

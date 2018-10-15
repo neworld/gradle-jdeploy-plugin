@@ -2,14 +2,16 @@ package lt.neworld.gradle.jdeploy.task;
 
 import com.moowork.gradle.node.NodeExtension;
 import com.moowork.gradle.node.npm.NpmTask;
-import lt.neworld.gradle.jdeploy.JDeployExtensionKt;
-import lt.neworld.gradle.jdeploy.ToolOptions;
+
 import org.gradle.api.tasks.Input;
 import org.gradle.api.tasks.OutputDirectory;
 
 import java.io.File;
 import java.util.Arrays;
 import java.util.List;
+
+import lt.neworld.gradle.jdeploy.JDeployExtensionKt;
+import lt.neworld.gradle.jdeploy.ToolOptions;
 
 /**
  * @author Andrius Semionovas
@@ -66,13 +68,8 @@ public class JDeploySetup extends NpmTask {
             );
         }
 
-
         List<String> args;
-        if (!getNodeDownload()) {
-            args = Arrays.asList("install", "jdeploy@" + getVersion(), "-g");
-        } else {
-            args = Arrays.asList("install", "jdeploy@" + getVersion());
-        }
+        args = Arrays.asList("install", "jdeploy@" + getVersion());
         setArgs(args);
         super.exec();
     }
