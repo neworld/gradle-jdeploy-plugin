@@ -1,3 +1,9 @@
+### v0.4.0
+
+- Update dependencies
+- Better Gradle incremental support
+- Global mode install jDeploy localy, into build directory
+
 ### v0.3.0
 
 - Add missing shelljs dependency

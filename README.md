@@ -62,6 +62,16 @@ You should consider use node in the project scope or explicit allow install glob
 ./gradlew jdeployPublish           #publish to NPM
 ```
 
+### Contribute
+
+You could easily run all samples to make sure everything is working:
+```
+cd samples
+./gradle smokeTest
+```
+
+If you are introducing new functionality, please make sample for it.
+
 ### License
 
 ```
