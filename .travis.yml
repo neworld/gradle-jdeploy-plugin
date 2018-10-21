@@ -1,0 +1,12 @@
+language: java
+sudo: false # faster builds
+
+notifications:
+  email: false
+
+jdk:
+- openjdk10
+
+script:
+- ./gradlew build
+- ./gradlew -c samples/settings.gradle smokeTest
