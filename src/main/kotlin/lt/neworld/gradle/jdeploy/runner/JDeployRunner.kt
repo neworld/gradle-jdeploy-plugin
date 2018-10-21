@@ -10,9 +10,11 @@ import java.io.File
  * @author Andrius Semionovas
  * @since 2017-11-26
  */
-class JDeployRunner(project: Project, val command: String) : ExecRunner(project) {
+class JDeployRunner(project: Project, val command: String, val env: Env = emptyMap()) : ExecRunner(project) {
 
     override fun doExecute(): ExecResult {
+        environment += env
+
         val nodeBinDirPath = File(NodeExtension.get(project).nodeModulesDir, ".bin")
 
         val exec = nodeBinDirPath.absolutePath + "/jdeploy"
@@ -20,3 +22,5 @@ class JDeployRunner(project: Project, val command: String) : ExecRunner(project)
         return run(exec, listOf(command))
     }
 }
+
+typealias Env = Map<String, String>

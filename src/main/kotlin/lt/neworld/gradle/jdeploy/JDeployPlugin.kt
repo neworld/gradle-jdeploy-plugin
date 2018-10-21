@@ -54,6 +54,8 @@ class JDeployPlugin : Plugin<Project> {
             description = "Publish package to NPM"
 
             command = "publish"
+
+            npmConfigPrefix = project.jdeployExtension.options.npmFakeConfigPrefix
         }
     }
 

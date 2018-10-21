@@ -18,5 +18,7 @@ data class ToolOptions(
         @get:OutputDirectory
         val workDir: File,
         @get:OutputFile
-        val packageFile: File
+        val packageFile: File,
+        @get:OutputDirectory
+        val npmFakeConfigPrefix: File
 )

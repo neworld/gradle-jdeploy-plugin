@@ -41,7 +41,8 @@ class JDeployExtension(private val project: Project) {
         val workDir = File(project.buildDir, "jdeploy")
         options = ToolOptions(
                 workDir = workDir,
-                packageFile = File(workDir, "package.json")
+                packageFile = File(workDir, "package.json"),
+                npmFakeConfigPrefix = File(project.buildDir, "tmp/npm-fake-config-prefix")
         )
     }
 
