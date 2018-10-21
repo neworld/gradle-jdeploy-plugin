@@ -1,4 +1,5 @@
 [![GitHub (pre-)release](https://img.shields.io/github/release/neworld/gradle-jdeploy-plugin/all.svg)](https://github.com/neworld/gradle-jdeploy-plugin)
+[![Travis-ci](https://travis-ci.org/neworld/gradle-jdeploy-plugin.svg?branch=master)](https://travis-ci.org/neworld/gradle-jdeploy-plugin)
 
 
 This Gradle plugin is a wrapper for [jDeploy](https://github.com/shannah/jdeploy). 
