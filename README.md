@@ -15,7 +15,7 @@ buildscript {
     }
   }
   dependencies {
-    classpath "gradle.plugin.lt.neworld.gradle:gradle-jdeploy-plugin:0.4.0"
+    classpath "lt.neworld.gradle:gradle-jdeploy-plugin:0.4.0"
   }
 }
 
