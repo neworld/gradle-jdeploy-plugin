@@ -1,3 +1,7 @@
+### v0.5.1
+
+- Fix regression due missing binName
+
 ### v0.5.0
 
 - Support custom bin name

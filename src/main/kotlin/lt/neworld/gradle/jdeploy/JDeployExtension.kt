@@ -5,6 +5,7 @@ import org.gradle.api.Project
 import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.InputFile
 import org.gradle.api.tasks.Nested
+import org.gradle.api.tasks.Optional
 import org.gradle.kotlin.dsl.invoke
 import java.io.File
 
@@ -23,7 +24,7 @@ class JDeployExtension(private val project: Project) {
     var name: String? = null
     @get:Input
     var repository: String = ""
-    @get:Input
+    @get:[Input Optional]
     var binName: String? = null
     var jar: File? = null
 
