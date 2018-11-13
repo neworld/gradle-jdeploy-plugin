@@ -15,7 +15,7 @@ buildscript {
     }
   }
   dependencies {
-    classpath "lt.neworld.gradle:gradle-jdeploy-plugin:0.4.0"
+    classpath "lt.neworld.gradle:gradle-jdeploy-plugin:0.5.0"
   }
 }
 
@@ -26,7 +26,7 @@ or
 
 ```groovy
 plugins {
-  id "lt.neworld.jdeploy" version "0.4.0"
+  id "lt.neworld.jdeploy" version "0.5.0"
 }
 ```
 
@@ -37,6 +37,7 @@ if you are using [gradle-node-plugin](https://github.com/srs/gradle-node-plugin)
 ```groovy
 jdeploy {
     name = "hello-world"
+    binName = "foo" // optional. You could override executable name if you wish. Otherwise uses name
     author = "neworldLT"
     description = "Hello world app for testing purposes"
     license = "MIT"

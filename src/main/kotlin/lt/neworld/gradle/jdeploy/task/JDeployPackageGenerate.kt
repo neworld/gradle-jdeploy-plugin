@@ -36,10 +36,12 @@ open class JDeployPackageGenerate : DefaultTask() {
         val name = config.name
                 ?: throw IllegalArgumentException("You must specify the name: \n jdeploy { \n\t name : <app name> \n }")
 
+        val binName = config.binName ?: name
+
         val toolOptions = config.options
 
         val packageEntity = PackageEntity(
-                bin = mapOf(name to "jdeploy-bundle/jdeploy.js"),
+                bin = mapOf(binName to "jdeploy-bundle/jdeploy.js"),
                 author = config.author,
                 description = config.description,
                 main = "index.js",

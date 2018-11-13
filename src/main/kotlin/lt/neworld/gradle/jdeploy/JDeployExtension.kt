@@ -23,6 +23,8 @@ class JDeployExtension(private val project: Project) {
     var name: String? = null
     @get:Input
     var repository: String = ""
+    @get:Input
+    var binName: String? = null
     var jar: File? = null
 
     @get:InputFile

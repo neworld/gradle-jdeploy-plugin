@@ -1,3 +1,7 @@
+### v0.5.0
+
+- Support custom bin name
+
 ### v0.4.0
 
 - Update dependencies
