@@ -1,4 +1,4 @@
-val kotlinVersion = "1.2.71"
+import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     `java-gradle-plugin`
@@ -57,4 +57,13 @@ pluginBundle {
             displayName = "jDeploy plugin"
         }
     }
+}
+
+tasks.withType<KotlinCompile> {
+    kotlinOptions.jvmTarget = "1.8"
+}
+
+tasks.withType<JavaCompile> {
+    sourceCompatibility = "1.8"
+    targetCompatibility = "1.8"
 }
