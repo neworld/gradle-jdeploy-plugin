@@ -19,7 +19,7 @@ repositories {
 }
 
 dependencies {
-    compile(kotlin("stdlib-jre8"))
+    compile(kotlin("stdlib-jdk8"))
     compile("com.moowork.gradle:gradle-node-plugin:1.3.1")
     compile("com.squareup.moshi:moshi:1.8.0")
     compile("com.squareup.moshi:moshi-kotlin:1.8.0")
