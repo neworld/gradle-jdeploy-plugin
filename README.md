@@ -50,6 +50,15 @@ jdeploy {
 }
 ```
 
+Sometimes you want use custom jar packaging task than provided with java plugin.
+For example [Shadow](https://github.com/johnrengelman/shadow).
+So, you can set jar custom jar path:
+```groovy
+jdeploy {
+    jar = file("$buildDir/libs/$name-$version-all.jar")
+}
+```
+
 ### Compatibility with [gradle-node-plugin](https://github.com/srs/gradle-node-plugin)
 
 Actually, this plugin depends on [gradle-node-plugin](https://github.com/srs/gradle-node-plugin).
