@@ -50,13 +50,18 @@ class JDeployExtension(private val project: Project) {
     }
 
     private fun getArchivePath(): File {
-        val jarTask = project.tasks.findByName("jar") as org.gradle.api.tasks.bundling.Jar?
+        val shadowJar = project.tasks.findByName("shadowJar") as? org.gradle.api.tasks.bundling.Jar?
 
-        if (jarTask == null) {
-            throw IllegalArgumentException("Could not find jar-task. Please make sure you are applying the 'java' plugin or using explicit:\n jdeploy { \n jar = <file> \n }")
+        if (shadowJar != null) {
+            JDeployPlugin.LOGGER.info("Found shadowJar plugin. Uses jar package from here")
+            return shadowJar.archiveFile.get().asFile
         }
 
-        return jarTask.archivePath
+        val jarTask = project.tasks.findByName("jar") as org.gradle.api.tasks.bundling.Jar?
+
+        jarTask ?: throw IllegalArgumentException("Could not find jar-task. Please make sure you are applying the 'java' plugin or using explicit:\n jdeploy { \n jar = <file> \n }")
+
+        return jarTask.archiveFile.get().asFile
     }
 }
 

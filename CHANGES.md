@@ -1,3 +1,9 @@
+### v0.6.0
+
+- Target 1.8 JVM
+- Update dependencies
+- Support Shadow jar plugin out of the box
+
 ### v0.5.1
 
 - Fix regression due missing binName

@@ -3,7 +3,9 @@
 
 
 This Gradle plugin is a wrapper for [jDeploy](https://github.com/shannah/jdeploy). 
-It helps publish software written in java, kotlin and other JVM languages through [NPM](https://www.npmjs.com/)
+It helps publish software written in java, kotlin and other JVM languages through [NPM](https://www.npmjs.com/).
+This plugin works out of the box using standard java plugins or [Shadow](https://github.com/johnrengelman/shadow).
+`shadowJar` archive location takes precedence over `jar` task.
 
 ### Setup
  
@@ -15,7 +17,7 @@ buildscript {
     }
   }
   dependencies {
-    classpath "lt.neworld.gradle:gradle-jdeploy-plugin:0.5.0"
+    classpath "lt.neworld.gradle:gradle-jdeploy-plugin:0.6.0"
   }
 }
 
@@ -26,7 +28,7 @@ or
 
 ```groovy
 plugins {
-  id "lt.neworld.jdeploy" version "0.5.0"
+  id "lt.neworld.jdeploy" version "0.6.0"
 }
 ```
 
@@ -51,7 +53,6 @@ jdeploy {
 ```
 
 Sometimes you want use custom jar packaging task than provided with java plugin.
-For example [Shadow](https://github.com/johnrengelman/shadow).
 So, you can set jar custom jar path:
 ```groovy
 jdeploy {

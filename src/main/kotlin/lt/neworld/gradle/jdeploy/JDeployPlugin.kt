@@ -7,6 +7,7 @@ import lt.neworld.gradle.jdeploy.task.JDeployTask
 import org.gradle.api.Plugin
 import org.gradle.api.Project
 import org.gradle.api.tasks.Copy
+import org.slf4j.LoggerFactory
 import java.io.File
 
 /**
@@ -57,11 +58,21 @@ class JDeployPlugin : Plugin<Project> {
 
             npmConfigPrefix = project.jdeployExtension.options.npmFakeConfigPrefix
         }
+
+        project.plugins.withId("com.github.johnrengelman.shadow") {
+            project.tasks.withType(JDeployPackageGenerate::class.java).forEach { task ->
+                if (project.tasks.findByName("shadowJar") != null) {
+                    task.dependsOn("shadowJar")
+                }
+            }
+        }
     }
 
     companion object {
         const val JDEPLOY_COPY_README_TASK = "jdeployReadme"
         const val TASK_GROUP = "jdeploy"
         const val JDEPLOY_VERSION = "1.0.21"
+
+        val LOGGER = LoggerFactory.getLogger(JDeployPlugin::class.java)
     }
 }
