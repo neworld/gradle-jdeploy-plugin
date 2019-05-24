@@ -1,14 +1,16 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
+val kotlinVersion = "1.3.31"
+
 plugins {
     `java-gradle-plugin`
     `maven-publish`
     `kotlin-dsl`
-    id("com.gradle.plugin-publish") version "0.10.0"
+    id("com.gradle.plugin-publish") version "0.10.1"
 }
 
 group = "lt.neworld.gradle"
-version = "0.5.1"
+version = "0.6.0"
 
 repositories {
     maven {
@@ -17,10 +19,10 @@ repositories {
 }
 
 dependencies {
-    compile("com.moowork.gradle:gradle-node-plugin:1.2.0")
-    compile("org.jetbrains.kotlin:kotlin-stdlib-jre8:$kotlinVersion")
-    compile("com.squareup.moshi:moshi:1.7.0")
-    compile("com.squareup.moshi:moshi-kotlin:1.7.0")
+    compile(kotlin("stdlib-jre8"))
+    compile("com.moowork.gradle:gradle-node-plugin:1.3.1")
+    compile("com.squareup.moshi:moshi:1.8.0")
+    compile("com.squareup.moshi:moshi-kotlin:1.8.0")
     testCompile("junit:junit:4.12")
 }
 
